@@ -1,0 +1,337 @@
+<html>
+
+<head>
+  <title>Sine Wave Editor</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css?family=Ubuntu+Condensed");
+body {
+  background-color: #483684;
+  color: #f1ff22;
+  font-family: "Ubuntu Condensed", sans-serif;
+  margin: 0;
+  overflow: hidden;
+  font-weight: bold;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  width: 550px;
+  margin: 0 auto;
+  margin-top: 90px;
+}
+
+.control {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 170px;
+  text-align: center;
+}
+
+/***** RANGE CUSTOMIZATION *****
+
+via http://danielstern.ca/range.css/?ref=css-tricks#/
+
+*******/
+input[type=range] {
+  -webkit-appearance: none;
+  width: 100%;
+  margin: 8.9px 0;
+  margin-top: 20px;
+}
+
+input[type=range]:focus {
+  outline: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 2.2px;
+  cursor: pointer;
+  box-shadow: 2.7px 2.7px 0 rgba(0, 0, 0, 0.07), 0 0 2.7px rgba(13, 13, 13, 0.07);
+  background: #f1ff22;
+  border-radius: 2.3px;
+  border: 0 solid #f1ff22;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  box-shadow: 0 0 0 #291d53, 0 0 0 #523d96;
+  border: 3px solid #291d53;
+  height: 20px;
+  width: 20px;
+  border-radius: 20px;
+  background: #f1ff22;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -8.9px;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #f2ff2c;
+}
+
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 2.2px;
+  cursor: pointer;
+  box-shadow: 2.7px 2.7px 0 rgba(0, 0, 0, 0.07), 0 0 2.7px rgba(13, 13, 13, 0.07);
+  background: #f1ff22;
+  border-radius: 2.3px;
+  border: 0 solid #f1ff22;
+}
+
+input[type=range]::-moz-range-thumb {
+  box-shadow: 0 0 0 #291d53, 0 0 0 #523d96;
+  border: 3px solid #291d53;
+  height: 20px;
+  width: 20px;
+  border-radius: 20px;
+  background: #f1ff22;
+  cursor: pointer;
+}
+
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 2.2px;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+
+input[type=range]::-ms-fill-lower {
+  background: #f0ff18;
+  border: 0 solid #f1ff22;
+  border-radius: 4.6px;
+  box-shadow: 2.7px 2.7px 0 rgba(0, 0, 0, 0.07), 0 0 2.7px rgba(13, 13, 13, 0.07);
+}
+
+input[type=range]::-ms-fill-upper {
+  background: #f1ff22;
+  border: 0 solid #f1ff22;
+  border-radius: 4.6px;
+  box-shadow: 2.7px 2.7px 0 rgba(0, 0, 0, 0.07), 0 0 2.7px rgba(13, 13, 13, 0.07);
+}
+
+input[type=range]::-ms-thumb {
+  box-shadow: 0 0 0 #291d53, 0 0 0 #523d96;
+  border: 3px solid #291d53;
+  height: 20px;
+  width: 20px;
+  border-radius: 20px;
+  background: #f1ff22;
+  cursor: pointer;
+  height: 2.2px;
+}
+
+input[type=range]:focus::-ms-fill-lower {
+  background: #f1ff22;
+}
+
+input[type=range]:focus::-ms-fill-upper {
+  background: #f2ff2c;
+}
+
+input[type=range]:focus {
+  outline: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 2.2px;
+  cursor: pointer;
+  box-shadow: 2.7px 2.7px 0 rgba(0, 0, 0, 0.07), 0 0 2.7px rgba(13, 13, 13, 0.07);
+  background: #f1ff22;
+  border-radius: 2.3px;
+  border: 0 solid #f1ff22;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  box-shadow: 0 0 0 #291d53, 0 0 0 #523d96;
+  border: 3px solid #291d53;
+  height: 20px;
+  width: 20px;
+  border-radius: 20px;
+  background: #f1ff22;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -8.9px;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #f2ff2c;
+}
+
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 2.2px;
+  cursor: pointer;
+  box-shadow: 2.7px 2.7px 0 rgba(0, 0, 0, 0.07), 0 0 2.7px rgba(13, 13, 13, 0.07);
+  background: #f1ff22;
+  border-radius: 2.3px;
+  border: 0 solid #f1ff22;
+}
+
+input[type=range]::-moz-range-thumb {
+  box-shadow: 0 0 0 #291d53, 0 0 0 #523d96;
+  border: 3px solid #291d53;
+  height: 20px;
+  width: 20px;
+  border-radius: 20px;
+  background: #f1ff22;
+  cursor: pointer;
+}
+
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 2.2px;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+
+input[type=range]::-ms-fill-lower {
+  background: #f0ff18;
+  border: 0 solid #f1ff22;
+  border-radius: 4.6px;
+  box-shadow: 2.7px 2.7px 0 rgba(0, 0, 0, 0.07), 0 0 2.7px rgba(13, 13, 13, 0.07);
+}
+
+input[type=range]::-ms-fill-upper {
+  background: #f1ff22;
+  border: 0 solid #f1ff22;
+  border-radius: 4.6px;
+  box-shadow: 2.7px 2.7px 0 rgba(0, 0, 0, 0.07), 0 0 2.7px rgba(13, 13, 13, 0.07);
+}
+
+input[type=range]::-ms-thumb {
+  box-shadow: 0 0 0 #291d53, 0 0 0 #523d96;
+  border: 3px solid #291d53;
+  height: 20px;
+  width: 20px;
+  border-radius: 20px;
+  background: #f1ff22;
+  cursor: pointer;
+  height: 2.2px;
+}
+
+input[type=range]:focus::-ms-fill-lower {
+  background: #f1ff22;
+}
+
+input[type=range]:focus::-ms-fill-upper {
+  background: #f2ff2c;
+}
+  </style>
+</head>
+
+<body>
+  <section class="controls">
+    <div class="control">
+      <label for="amplitude">Amplitude</label>
+      <input id="amplitude" type="range" min="10" max="200" value="50">
+    </div>
+    <div class="control">
+      <label for="wavelength">Wave length</label>
+      <input id="wavelength" type="range" min="300" max="500" value="500">
+    </div>
+    <div class="control">
+      <label for="frequency">Frequency</label>
+      <input id="frequency" type="range" min="1" max="30" value="100">
+    </div>
+  </section>
+
+  <canvas id="canvas"></canvas>
+</body>
+<script>
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+
+const amplitudeRange = document.getElementById('amplitude');
+const waveLegthRange = document.getElementById('wavelength');
+const frequencyRange = document.getElementById('frequency');
+
+let posX = 0;
+let posY = 0;
+let diffX = 0;
+
+updateCanvas();
+
+let amplitude = Number(amplitudeRange.value);
+let frames = 0;
+let frequency = Number(frequencyRange.value);
+let wavelength = Number(waveLegthRange.value);
+
+amplitudeRange.addEventListener('input', (evt) => {
+  amplitude = Number(evt.currentTarget.value);
+});
+
+waveLegthRange.addEventListener('input', (evt) => {
+  wavelength = Number(evt.currentTarget.value);
+});
+
+frequencyRange.addEventListener('input', (evt) => {
+  frequency = Number(evt.currentTarget.value);
+});
+
+animate();
+
+window.addEventListener('resize', onResize);
+
+function updateCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight / 2;
+  diffX = canvas.width / 2.5;
+
+  posX = canvas.width * .5;
+  posY = canvas.height * .5;
+
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.strokeStyle = '#f1ff22';
+  ctx.lineWidth = 1;
+  ctx.moveTo(posX, posY);
+}
+
+function drawCircle(x, y, ctx) {
+  ctx.beginPath();
+  ctx.arc(x, y, 5, 0, 2 * Math.PI, false);
+  ctx.fillStyle = ctx.strokeStyle;
+  ctx.fill();
+  ctx.lineWidth = 5;
+  ctx.stroke();
+}
+
+function calcPosY(x) {
+  return Math.sin((x / wavelength * (Math.PI * 2)) + frames / frequency) * amplitude;
+}
+
+function animate() {
+  frames++;
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.beginPath();
+  ctx.lineWidth = 1;
+
+  for (let x = posX - diffX; x < canvas.width / 2 + diffX; x++) {
+    const y = calcPosY(x);
+    ctx.lineTo(x, y + posY);
+  }
+
+  ctx.stroke();
+
+  for (let cx = posX - diffX; cx < canvas.width / 2 + diffX; cx += 15) {
+    const y1 = calcPosY(cx);
+    drawCircle(cx, y1 + posY - 40, ctx);
+  }
+
+  requestAnimationFrame(animate.bind(this));
+}
+
+function onResize() {
+  updateCanvas();
+}
+  </script>
+</html>
